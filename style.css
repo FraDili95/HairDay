@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
-body.grid_container {
+.home_page{
      background-color: rgba(26, 26, 26, 0.401);
     display: grid;
     grid-template-rows: 15vh 1fr 10vh;
@@ -20,6 +20,17 @@ body.grid_container {
         "footer";
 }
 /*tool class*/
+.x2{
+    scale: 2;
+}
+.x3{
+    scale: 3;
+}
+.flex_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .img_fluid{
     height: auto;
     width: 100%;
@@ -70,6 +81,29 @@ ul{
     color: rgb(208, 96, 76);
     padding-bottom: 0.4em;
     border-bottom: 0.2em solid rgb(208, 96, 76);
+}
+nav ul li {
+  position: relative;
+}
+
+nav ul li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: 0.2em;
+  background-color: rgb(208, 96, 76);
+  transition: transform 0.4s ease;
+}
+
+nav ul li:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+nav ul li:hover{
+    color: rgb(208, 96, 76);
 }
 /*-------END HEADER----------------*/
 /***********************************/
@@ -122,7 +156,7 @@ main {
     position: absolute;
     top: 5%;
 }
-#rewiews{
+#reviews{
     grid-area: rewiews;
     display: flex;
     justify-content: center;
@@ -133,7 +167,7 @@ main {
 .inactive{
     opacity: 0.3;
 }
-.rewiew{
+.review{
     padding: 2.5em;
     border: 1px solid rgba(255, 255, 255, 0.5);
     height: 65%;
@@ -142,6 +176,10 @@ main {
     margin: 0 2%;
     background-color: rgba(99, 99, 104,0.5);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+.description_review{
+    margin-top: 1em;
+    font-size: 1.5em;
 }
 .star_container{
     margin: 6% 0 3% 0;
@@ -210,6 +248,7 @@ main {
 .portfolio_header{
     grid-area: portfolio_header;
     margin: 1em 0;
+    text-transform: uppercase;
 }
 .portfolio_main{
     grid-area: portfolio_main;
@@ -272,4 +311,57 @@ footer {
 }
 .social:hover{
     scale: 1.5;
+}
+
+/****************************************************/
+/***********SPINNER*+********************************/
+/****************************************************/
+.spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #D0604B;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+/****************************************************/
+/***page loading****+********************************/
+/****************************************************/
+.page_loading{
+    min-width: 100vw; 
+    min-height: 100vh;
+    background-color: #333;
 }
