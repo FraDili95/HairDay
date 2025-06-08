@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-HAIR DAY</title>
+    <!-------------------------->
+    <!--METATAG-->
+    <!--Improve Edge compatibility//Migliora compatibilità Edge-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--Metatags for possible social sponsorships//Metatag per eventuali sponsorizzazioni-->
+    <meta name="author" content="Hair Day">
+    <meta name="description" content="Expert haircuts and styling services to keep you looking
+    fresh and confident. Visit our salon for a personalized beauty experience."/>
+    <!-- Open Graph for social -->
+    <meta property="og:title" content="Hair Day" />
+    <meta property="og:description" content="Expert haircuts and styling services to keep you looking
+    fresh and confident. Visit our salon for a personalized beauty experience."/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/demo-site" />
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Demo+Site" />
+    <!--Twitter card-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hair Day" />
+    <meta name="twitter:description" content="Expert haircuts and styling services to keep you looking
+    fresh and confident. Visit our salon for a personalized beauty experience." />
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=Demo+Site" />
+    <!-------------------------->
+    <!--FILE CSS AND COMPATIBILITY-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="style.css" >
+    <!-------------------------->
+    <!--icone-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- CSS of Fancybox -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+    />
+</head>
+<body class="grid_container">
+    <!--UPPER PART-->
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img class="img_fluid" src="./Assets/logo/Artboard 23.png" alt="logo hair_day salon">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li class="li_active">HOMEPAGE</li>
+                <li>PRODUCTS</li>
+                <li>CONTACT</li>
+                <li>ABOUT US</li>
+            </ul>
+        </nav>
+    </header>
+    <!--MAIN PART-->
+    <main>
+        <!--HERO WITH BOOKING BUTTON-->
+        <div id="banner_book_hero">
+            <!--link to booking an appointment-->
+            <div class="booking">
+              book your appointment
+            </div>
+        </div>
+        <!--3 DIFFERENT PRINCIPAL ARTICLES(LOCATIONS, REWIEWS, PORTFOLIO)-->
+        <!--LOCATIONS------>
+        <article id="locations"><!--1-->
+            <h3 class="location_header">LOCATIONS</h3>
+            <!--******main_location*******-->
+
+            <div class="location_main">
+                <figure class="location_one relative">
+                     <a 
+                      data-fancybox="gallery_location"
+                      href="Assets/img_salon/hair_salon.jpg"
+                    ><div class="adapt"></div></a>
+                    <figcaption class="absolute">
+                      <h6>Langley, BC</h6>
+                    </figcaption>
+               </figure>
+               
+            <!------->
+           
+                <figure class="location_two relative">
+                     <a 
+                      data-fancybox="gallery_location"
+                      href="Assets/img_salon/salon_one.jpg"
+                    ><div class="adapt"></div></a>
+                    <figcaption class="absolute">
+                      <h6>Mount Pleasant,Vancouver</h6>
+                    </figcaption>
+               </figure>
+               
+         
+            <!------->
+            
+                <figure class="location_three relative">
+                     <a 
+                      data-fancybox="gallery_location"
+                      href="Assets/img_salon/salon_two.jpg"
+                    > <div class="adapt"></div></a>        
+                    <figcaption class="absolute">
+                      <h6>Kitsilano, Vancouver</h6>
+                    </figcaption>
+                </figure>
+            <!------->
+          </div>  
+        </article>
+        <!--------------END OF LOCATION ARTICLE AT LEFT ------------------------------->
+        <!--REWIEWS------>
+        <div id="rewiews"><!--2-->
+               <h3 class="article_h3 t_center">A five star salon experience</h3>
+               <button class="arrow_left"><i class="fa-solid fa-arrow-left "></i></button>
+               <button class="arrow_right"><i class="fa-solid fa-arrow-right "></i></button>
+                <!------->
+               <article class="rewiew inactive">
+                <cite class="block t_center"></cite>
+                <hr style="margin: 3% 0;">
+                <div class="star_container t_center">
+                    
+                </div>
+                <span class="block t_center"></span>
+                <blockquote class="block t_center"></blockquote>
+            </article>
+             <!------->
+            <article class="rewiew active">
+                <cite class="block t_center"></cite>
+                <hr style="margin: 3% 0;">
+                <div class="star_container t_center">
+                   
+                </div>
+                <span class="block t_center"></span>
+                <blockquote class="block t_center"></blockquote>
+            </article>
+             <!------->
+              <article class="rewiew inactive">
+                <cite class="block t_center"></cite>
+                <hr style="margin: 3% 0;">
+                <div class="star_container t_center">
+                   
+                    
+                </div>
+                <span class="block t_center"></span>
+                <blockquote class="block t_center"></blockquote>
+            </article>
+        </div>
+        <!--------------END OF REWIEWS ARTICLE AT THE MIDDLE ------------------------------->
+        <!--PORTFOLIO----->
+        <article id="portfolio"><!--3-->
+            <h3 class="portfolio_header t_center">PORTFOLIO OF OUR WORK</h3>
+            <div class="portfolio_main">
+                <!--1-->
+               <figure class="haircut_one">
+                     <a
+                      data-fancybox="gallery"
+                      href="Assets/img_portfolio/haircut_one_pic.jpg"
+                    >
+                      <img  class="img_fluid adapt" src="Assets/img_portfolio/haircut_one_pic.jpg" alt="pic of haircut one" />
+                    </a>
+               </figure>
+               <!--2-->
+               <figure class="haircut_two">
+                     <a
+                      data-fancybox="gallery"
+                      href="Assets/img_portfolio/haircut_two.jpg"
+                    >
+                      <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_two.jpg" alt="pic of haircut two" />
+                    </a>
+               </figure>
+               <!--3-->
+               <figure class="haircut_three">
+                     <a
+                      data-fancybox="gallery"
+                      href="Assets/img_portfolio/haircut_three.jpg"
+                    >
+                      <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_three.jpg" alt="pic of haircut three" />
+                    </a>
+               </figure>
+               <!--4-->
+               <figure class="haircut_four">
+                     <a
+                      data-fancybox="gallery"
+                      href="Assets/img_portfolio/haircut_four.jpg"
+                    >
+                      <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_four.jpg" alt="pic of haircut four" />
+                    </a>
+               </figure>
+               <!--5-->
+               <figure class="haircut_five">
+                     <a
+                      data-fancybox="gallery"
+                      href="Assets/img_portfolio/haircut_five.jpg"
+                    >
+                      <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_five.jpg" alt="pic of haircut five" />
+                    </a>
+               </figure>
+               <!--6-->
+               <figure class="haircut_six">
+                     <a
+                      data-fancybox="gallery"
+                      href="Assets/img_portfolio/haircut_six.jpg"
+                    >
+                      <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_six.jpg" alt="pic of haircut six" />
+                    </a>
+               </figure>
+               <!--end-->
+            </div>
+        </article>
+        <!--------------END OF PORTFOLIO ARTICLE AT THE RIGHT ------------------------------->
+    </main>
+    <!--FOOTER PART-->
+    <footer>
+        <figure class="footer_logo">
+          <img class="img_fluid" style="display: inline-block; max-width: 8%;" src="Assets/logo/Artboard 19.png" alt="logo hair day">
+          <img class="img_fluid" src="Assets/logo/Artboard 22.png" alt="logo hair day">
+        </figure>
+        <section class="footer_copyright">
+          <a href="https://www.linkedin.com/in/francesco-d/" class="social">
+            <i style="font-size: 2em;" class="fa-brands fa-linkedin"></i>
+          </a >
+          <p class="text_copyright"> &copy; <span id="year"></span>Francesco Diliberto Portfolio. All rights reserved.</p>
+        </section>
+    </footer>
+    <!--link to javascript-->
+    <script src="script.js"></script>
+    <!-- JS of Fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+</body>
+</html>
