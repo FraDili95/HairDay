@@ -15,12 +15,13 @@ const dataReviews = [
     { name: "William Taylor", rate: 4.7, date: "December 5, 2022", description: "Friendly and skilled staff who really care about their clients. Highly recommend." },
     { name: "Sophia Moore", rate: 4.8, date: "November 12, 2022", description: "Amazing service with great attention to detail. I always leave feeling refreshed and confident." }
 ];
+
 const internalLinkBtn = {
     homePageBtn: "home_page",
     servicesBtn: "services_page",
     contactBtn:  "contact_page",
     aboutBtn:    "about_page"
-}
+};
 
 /////////////////////////////////////
 // GLOBAL VARIABLES
@@ -30,56 +31,79 @@ const internalLinkBtn = {
 let currentIndex = 0;
 let targetInjection = [];
 let currentNavBtnActive = "homePageBtn";
-//arrows button into review
-const pointerArrowLeft = document.querySelector(".arrow_left");
-const pointerArrowRight = document.querySelector(".arrow_right");
-//nav button header
-const pointerHomePageBtn   = document.querySelector(".homePageBtn");
-const pointerServicesBtn   = document.querySelector(".servicesBtn");
-const pointerContactBtn    = document.querySelector(".contactBtn");
-const pointerAboutBtn      = document.querySelector(".aboutBtn");
-//pages
+
 const pointerHomePage = document.querySelector(".home_page");
 const pointerSpinnerPage = document.querySelector(".page_loading");
+const pointerContactPage = document.querySelector(".contact_page");
 
 /////////////////////////////////////
 // INIT - When DOM is ready
 // 🇬🇧 Initializes DOM references and populates initial reviews
 // 🇮🇹 Inizializza i riferimenti e mostra le prime recensioni
 /////////////////////////////////////
-
 document.addEventListener("DOMContentLoaded", function () {
-    targetInjection = arrayWithAllPunctOfReviews();
-    reviewsPopulator();
+    targetInjection = arrayWithAllPunctOfReviews(); // collect review slots (DOM nodes)
+    reviewsPopulator(); // populate initial reviews
 
-    // automatic updating
+    // automatic updating every 5 seconds
     setInterval(() => {
         currentIndex++;
         reviewsPopulator();
     }, 5000);
-
 });
 
 /////////////////////////////////////
-// NAV BTN EVENTS
-// 🇬🇧 Handles click navigation
-// 🇮🇹 Gestisce la navigazione tramite NAV
-//////////////////////////////////////////
-[pointerHomePageBtn, pointerServicesBtn, pointerContactBtn, pointerAboutBtn]
-  .forEach(elem => {
-    elem.addEventListener("click", event => {
-      navigationManager(event.target.classList[0]);
-    });
-  });
+// NAVIGATION MANAGEMENT
+// Handles nav buttons and page switching
+/////////////////////////////////////
+function selectorNavBtn(clicked, element) {
+    const oldPageTmp = currentNavBtnActive;
+    if (!element.classList.contains("li_active")) {
+        document.querySelector(`.${currentNavBtnActive}`).classList.remove("li_active");
+        currentNavBtnActive = clicked;
+        navButtonSeekerSelector(currentNavBtnActive).classList.add("li_active");
+    }
+    return oldPageTmp; // return old nav state
+}
+
+function navButtonSeekerSelector(currentNavBtnActive) {
+    switch (currentNavBtnActive) {
+        case "homePageBtn": {
+            // find the actual button DOM in nav
+            const homeBtn = document.querySelector(".nav_home").firstElementChild.children;
+            return [...homeBtn].find(el => el.classList.contains("homePageBtn"));
+        }
+        case "contactBtn": {
+            const cntBtn = document.querySelector(".contact_nav").firstElementChild.children;
+            return [...cntBtn].find(el => el.classList.contains("contactBtn"));
+        }
+        default:
+            return null;
+    }
+}
+
+function setPageActive(clicked, old) {
+    const keyOldPage = internalLinkBtn[old];
+    const keyNext = internalLinkBtn[clicked];
+
+    document.querySelector(`.${keyOldPage}`).classList.add("none"); // hide old page
+
+    pointerSpinnerPage.classList.remove("none"); // show loader
+    setTimeout(() => {
+        pointerSpinnerPage.classList.add("none"); // hide loader
+        document.querySelector(`.${keyNext}`).classList.remove("none"); // show new page
+    }, 1000);
+}
+
+function navigationManager(clicked, element) {
+    const oldPage = selectorNavBtn(clicked, element); // update nav button active state
+    setPageActive(clicked, oldPage); // switch pages
+}
 
 /////////////////////////////////////
-// ARROW EVENTS
-// 🇬🇧 Handles previous/next click navigation
-// 🇮🇹 Gestisce la navigazione tramite frecce
+// REVIEW CAROUSEL LOGIC
+// Manages prev/next review functionality
 /////////////////////////////////////
-pointerArrowLeft.addEventListener("click", previousReview);
-pointerArrowRight.addEventListener("click", nextReview);
-
 function previousReview() {
     currentIndex === 0 ? currentIndex = dataReviews.length - 1 : currentIndex--;
     reviewsPopulator();
@@ -90,69 +114,27 @@ function nextReview() {
     reviewsPopulator();
 }
 
-/////////////////////////////////////
-// reviewsPopulator
-// 🇬🇧 Populates previous, current and next review
-// 🇮🇹 Popola recensioni precedente, attuale e successiva
-/////////////////////////////////////
 function reviewsPopulator() {
+    // Populate three slots: previous, current, next
     for (let i = 0; i < 3; i++) {
         if (i === 0) {
-            const index = currentIndex === 0 ? dataReviews.length - 1 : currentIndex - 1;
-            populatorThroughIndex(index, 0);
+            const idx = currentIndex === 0 ? dataReviews.length - 1 : currentIndex - 1;
+            populatorThroughIndex(idx, 0);
         } else if (i === 1) {
             populatorThroughIndex(currentIndex, 1);
-        } else if (i === 2) {
-            const index = currentIndex === dataReviews.length - 1 ? 0 : currentIndex + 1;
-            populatorThroughIndex(index, 2);
+        } else {
+            const idx = currentIndex === dataReviews.length - 1 ? 0 : currentIndex + 1;
+            populatorThroughIndex(idx, 2);
         }
     }
 }
 
-/////////////////////////////////////
-// generateStars
-// 🇬🇧 Creates star icons based on rating
-// 🇮🇹 Crea icone stella in base al punteggio
-/////////////////////////////////////
-function generateStars(rate) {
-    const fullStars = Math.floor(rate);
-    const halfStar = rate % 1 >= 0.25 && rate % 1 < 0.75;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-    const starContainer = document.createElement("div");
-
-    for (let i = 0; i < fullStars; i++) {
-        const star = document.createElement("i");
-        star.className = "fa-solid fa-star star";
-        starContainer.appendChild(star);
-    }
-
-    if (halfStar) {
-        const star = document.createElement("i");
-        star.className = "fa-solid fa-star-half-stroke star";
-        starContainer.appendChild(star);
-    }
-
-    for (let i = 0; i < emptyStars; i++) {
-        const star = document.createElement("i");
-        star.className = "fa-regular fa-star";
-        starContainer.appendChild(star);
-    }
-
-    return starContainer;
-}
-
-/////////////////////////////////////
-// populatorThroughIndex
-// 🇬🇧 Populates a single review slot (left, center, right)
-// 🇮🇹 Popola uno dei tre slot di recensione (sinistra, centro, destra)
-/////////////////////////////////////
 function populatorThroughIndex(indexData, indexReview) {
     const tmpObj = dataReviews[indexData];
     const reviewTarget = targetInjection[indexReview];
-
     if (!reviewTarget || reviewTarget.length < 4) return;
 
+    // fill name, stars, date, description in the correct DOM nodes
     reviewTarget[0].innerText = tmpObj.name;
     reviewTarget[1].innerHTML = "";
     reviewTarget[1].appendChild(generateStars(tmpObj.rate));
@@ -160,28 +142,45 @@ function populatorThroughIndex(indexData, indexReview) {
     reviewTarget[3].innerText = tmpObj.description;
 }
 
-/////////////////////////////////////
-// getReviewsHtmlCollection
-// 🇬🇧 Gets all review containers from DOM
-// 🇮🇹 Ottiene tutti i contenitori recensioni dal DOM
-/////////////////////////////////////
-function getReviewsHtmlCollection() {
-    const domReviews = document.getElementsByClassName("review");
-    const pointersDomReviews = [];
+function generateStars(rate) {
+    // create star icons dynamically based on rating
+    const full = Math.floor(rate);
+    const half = rate % 1 >= 0.25 && rate % 1 < 0.75;
+    const empty = 5 - full - (half ? 1 : 0);
+    const container = document.createElement("div");
 
-    for (let i = 0; i < domReviews.length; i++) {
-        pointersDomReviews.push(domReviews[i]);
+    for (let i = 0; i < full; i++) {
+        const star = document.createElement("i");
+        star.className = "fa-solid fa-star star"; // full star
+        container.appendChild(star);
     }
 
-    return pointersDomReviews;
+    if (half) {
+        const star = document.createElement("i");
+        star.className = "fa-solid fa-star-half-stroke star"; // half star
+        container.appendChild(star);
+    }
+
+    for (let i = 0; i < empty; i++) {
+        const star = document.createElement("i");
+        star.className = "fa-regular fa-star"; // empty star
+        container.appendChild(star);
+    }
+
+    return container;
 }
 
 /////////////////////////////////////
-// sorter
-// 🇬🇧 Filters only allowed tags (cite, div, span, blockquote)
-// 🇮🇹 Filtra solo i tag permessi (cite, div, span, blockquote)
+// DOM UTILITY FUNCTIONS
+// Collects review DOM nodes and filters child tags
 /////////////////////////////////////
+function getReviewsHtmlCollection() {
+    const domReviews = document.getElementsByClassName("review");
+    return Array.from(domReviews);
+}
+
 function sorter(localTag) {
+    // only allow certain tags
     switch (localTag) {
         case "cite":
         case "div":
@@ -193,73 +192,20 @@ function sorter(localTag) {
     }
 }
 
-/////////////////////////////////////
-// arrayWithAllPunctOfReviews
-// 🇬🇧 Returns nested child elements of review boxes
-// 🇮🇹 Restituisce gli elementi interni delle recensioni
-/////////////////////////////////////
 function arrayWithAllPunctOfReviews() {
-    const pointersDomReviews = getReviewsHtmlCollection();
-    let pointersTargetIntoReviews = [];
+    const pointers = getReviewsHtmlCollection();
+    const result = [];
 
-    for (let i = 0; i < pointersDomReviews.length; i++) {
-        let collectionTmp = [];
-        for (let j = 0; j < pointersDomReviews[i].children.length; j++) {
-            const tag = pointersDomReviews[i].children[j].tagName.toLowerCase();
+    pointers.forEach(reviewBox => {
+        const collectionTmp = [];
+        Array.from(reviewBox.children).forEach(child => {
+            const tag = child.tagName.toLowerCase();
             if (sorter(tag) !== 0) {
-                collectionTmp.push(pointersDomReviews[i].children[j]);
+                collectionTmp.push(child);
             }
-        }
-        pointersTargetIntoReviews.push(collectionTmp);
-    }
+        });
+        result.push(collectionTmp);
+    });
 
-    return pointersTargetIntoReviews;
-}
-/////////////////////////////////////
-// deselectorBtn
-// 🇬🇧 button selector(remove/add active class)
-// 🇮🇹 selettore bottone(rimuove/aggiunge classe active)
-/////////////////////////////////////
-function selectorNavBtn(clicked){
-    const elementClicked = pointerSelector(clicked);
-    if(elementClicked !== 0){
-        elementClicked.classList.add("li_active");
-    }
-    //remove old selector
-    document.querySelector(`#${currentNavBtnActive}`).classList.remove("li_active");
-    currentNavBtnActive = clicked;
-    
-}
-function pointerSelector(key){
-  return key === "homePageBtn"    ? pointerHomePageBtn :
-         key === "servicesBtn"    ? pointerServicesBtn :
-         key === "contactBtn"     ? pointerContactBtn :
-         key === "aboutBtn"       ? pointerAboutBtn :
-         key === "home_page"      ? pointerHomePage :
-         key === "page_loading"   ? pointerSpinnerPage : 0;
-}
-
- 
- function setPageActive(clicked){
-    //hide previous page
-    const keyOldPage = internalLinkBtn[currentNavBtnActive];
-    const keyNext = internalLinkBtn[clicked];
-    document.querySelector(`.${keyOldPage}`).classList.add("none");
-    //loading....
-    pointerSpinnerPage.classList.remove("none");
-    setTimeout(() => {
-      pointerSpinnerPage.classList.add("none"); 
-    }, 1000);
-    //new page
-    document.querySelector(`.${keyNext}`).classList.remove("none");
- }
-
-
-
-function navigationManager(clicked){
-    setPageActive(clicked);
-    if(clicked!==currentNavBtnActive){
-        selectorNavBtn(clicked);//selector
-    }
-    
+    return result; // nested arrays of allowed child elements
 }

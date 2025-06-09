@@ -34,20 +34,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/4.1.0/spin.min.js"></script>
 </head>
 <body>
+  
 <!--/////////////////////HOME PAGE//////////////////////////////////////////////////////////////////////////////////-->  
   <section class="home_page">
-    <header>
+    <header class="header_home_page">
       <div class="logo">
-        <a href="#">
+        <a href="/">
           <img class="img_fluid" src="./Assets/logo/Artboard 23.png" alt="logo hair_day salon">
         </a>
       </div>
-        <nav>
+        <nav class="nav_home">
           <ul>
-            <li class="homePageBtn li_active">HOMEPAGE</li>
-            <li class="servicesBtn">SERVICES</li>
-            <li class="contactBtn">CONTACT</li>
-            <li class="aboutBtn">ABOUT US</li>
+            <li class="homePageBtn li_active" onclick="navigationManager(event.target.classList[0], event.target )">HOMEPAGE</li>
+            <li class="servicesBtn" onclick="navigationManager(event.target.classList[0], event.target )">SERVICES</li>
+            <li class="contactBtn" onclick="navigationManager(event.target.classList[0], event.target )">CONTACT</li>
+            <li class="aboutBtn" onclick="navigationManager(event.target.classList[0], event.target )">ABOUT US</li>
           </ul>
         </nav>
     </header>
@@ -70,7 +71,7 @@
               <div class="adapt"></div>
             </a>
             <figcaption class="absolute">
-              <h6>Langley, BC</h6>
+              <h6>Wallaby, BC</h6>
             </figcaption>
           </figure>
 
@@ -79,7 +80,7 @@
               <div class="adapt"></div>
             </a>
             <figcaption class="absolute">
-              <h6>Mount Pleasant, Vancouver</h6>
+              <h6>Lunenburg, Kelowna</h6>
             </figcaption>
           </figure>
 
@@ -88,7 +89,7 @@
               <div class="adapt"></div>
             </a>
             <figcaption class="absolute">
-              <h6>Kitsilano, Vancouver</h6>
+              <h6>Tofino, Kelowna</h6>
             </figcaption>
           </figure>
         </div>
@@ -97,8 +98,8 @@
       <!--REVIEWS-->
       <div id="reviews">
         <h3 class="article_h3 text-center">A five star salon experience</h3>
-        <button class="arrow_left"><i class="fa-solid fa-arrow-left"></i></button>
-        <button class="arrow_right"><i class="fa-solid fa-arrow-right"></i></button>
+        <button class="arrow_left" onclick="previousReview()"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="arrow_right" onclick="nextReview()"><i class="fa-solid fa-arrow-right"></i></button>
 
         <article class="review inactive">
           <cite class="block text-center"></cite>
@@ -189,9 +190,90 @@
       <div class="bounce3"></div>
     </div>
   </section>
-<!--/////////////////////SPINNER//////////////////////////////////////////////////////////////////////////////////-->  
+<!--/////////////////////CONTACT PAGE//////////////////////////////////////////////////////////////////////////////////-->  
+  <section class="contact_page none">
+    <!--HEADER......-->
+    <header class="header_contact_page " style="z-index: 100000;">
+      <a href="/" class="flex_center adapt">
+          <img class="img_fluid" style="max-width: 75%;" src="./Assets/logo/Artboard 23.png" alt="logo hair_day salon">
+      </a>
+      <nav class="contact_nav">
+         <ul class="flex_center adapt">
+            <li class="homePageBtn" onclick="navigationManager(event.target.classList[0], event.target )">HOMEPAGE</li>
+            <li class="servicesBtn" onclick="navigationManager(event.target.classList[0], event.target)">SERVICES</li>
+            <li class="contactBtn" onclick="navigationManager(event.target.classList[0], event.target)">CONTACT</li>
+            <li class="aboutBtn" onclick="navigationManager(event.target.classList[0], event.target)">ABOUT US</li>
+          </ul>
+      </nav>
+    </header>
+    <!--MAIN......-->
+    <main class="main_contact_page">
+      <div class="form_container">
+        <h2 class="flex_center uppercase x2">contact us</h2>
+        <strong>To cancel an appointment, we recommend calling us directly at <strong class="cell_number">123.478.888.16</strong> to ensure prompt communication with our staff.</strong>
+        <span>
+          Please note that cancellations sent via email may not be seen in time, and you could incur a late cancellation or no-show charge.
+        </span>
+      <form class="contact_form" action="/submit" method="post" autocomplete="on" aria-label="Contact form">
+        <fieldset class="name_field">
+          <legend>Name</legend>
+          <div>
+            <label for="first_name" class="fn_fld">First name</label>
+            <input type="text" id="first_name" name="first_name" required autocomplete="given-name" aria-required="true">
+          </div>
+          <div class="ln_fld">
+            <label for="last_name">Last name</label>
+            <input type="text" id="last_name" name="last_name" required autocomplete="family-name" aria-required="true">
+          </div>      
+        </fieldset>
 
-  <!-- JS -->
+        <div class="email_field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required autocomplete="email" aria-required="true">
+        </div>
+
+        <fieldset class="location_field">
+          <legend>Location</legend>
+          <label for="location" class="visually-hidden">Select your location</label>
+          <select id="location" name="location" required aria-required="true">
+            <option value="" disabled selected>Select a location</option>
+            <option value="wallaby">Wallaby BC</option>
+            <option value="lunenburg">Lunenburg Kelowna</option>
+            <option value="tofino">Tofino Kelowna</option>
+            <option value="na">N/A</option>
+          </select>
+        </fieldset>
+
+        <fieldset class="subject_field">
+          <legend>Subject</legend>
+          <label for="subject" class="visually-hidden">Select a subject</label>
+          <select id="subject" name="subject" required aria-required="true">
+            <option value="" disabled selected>Select a subject</option>
+            <option value="services">Services</option>
+            <option value="products">Products</option>
+            <option value="appointments">Appointment Changes</option>
+            <option value="other">Other</option>
+          </select>
+        </fieldset>
+
+        <div class="message_field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required aria-required="true" autocomplete="off" placeholder="Write your message here..."></textarea>
+        </div>
+
+        <div class="button_field">
+          <button type="submit" class="uppercase flex_center" aria-label="Send the form"><strong>Send</strong></button>
+        </div>
+      </form>
+
+      </div>
+      <div class="header_separator"></div>
+      <div class="maps_container"></div>
+    </main>
+    <!--FOOTER......-->
+    <!-- <footer class="footer_contact_page"></footer> -->
+  </section>
+   <!-- JS -->
   <script src="script.js"></script>
   <!--JS library for pic views(FANCYBOX)-->
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>

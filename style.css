@@ -10,6 +10,7 @@ h1, h2, h3, h4, h5, h6{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
+body{background-color: rgba(26, 26, 26, 0.401)}
 .home_page{
      background-color: rgba(26, 26, 26, 0.401);
     display: grid;
@@ -21,10 +22,10 @@ h1, h2, h3, h4, h5, h6{
 }
 /*tool class*/
 .x2{
-    scale: 2;
+     transform: scale(2);
 }
 .x3{
-    scale: 3;
+     transform: scale(3);
 }
 .flex_center{
     display: flex;
@@ -45,9 +46,12 @@ h1, h2, h3, h4, h5, h6{
     display: none;
 }
 .adapt{min-width: 100%; min-height: 100%; max-width: 100%; max-width: 100%;}
+.uppercase{
+    text-transform: uppercase;
+}
 /********************************/
 /*-------HEADER UPPER PART------*/
-header {
+.header_home_page {
     background-color: rgba(0, 0, 0, 0.90);
     color: white;
     grid-area: header;
@@ -146,7 +150,7 @@ main {
  cursor: pointer;
 }
 .booking:hover{
-    scale: 1.2;
+     transform: scale(1.2);
     animation: book_animation 0.4s ease-out forwards;
 }
 /****rewiews****/
@@ -231,7 +235,7 @@ main {
     background-position: center;
     background-repeat: no-repeat;
 }
-.location_one:hover,.location_two:hover,.location_three:hover{scale: 1.2; z-index: 10; font-size: 2.2em;}
+.location_one:hover,.location_two:hover,.location_three:hover{ transform: scale(1.1); font-size: 2.2em;}
 .location_one{grid-area: location_one;background-image: url('./Assets/img_salon/hair_salon_cut.JPG'); }
 .location_two{grid-area: location_two;background-image: url('./Assets/img_salon/salon_one.jpg')}
 .location_three{grid-area: location_three;background-image: url('./Assets/img_salon/salon_two.jpg');}
@@ -268,7 +272,7 @@ main {
 .haircut_six{grid-area: haircut_six;}
 .haircut_one:hover,.haircut_two:hover,.haircut_three:hover,
 .haircut_four:hover,.haircut_five:hover,.haircut_six:hover{
-scale: 1.1; z-index: 10; border-color:
+ transform: scale(1.1); z-index: 10; 
 }
 /*-------END MAIN------------------*/
 /************************git***********/
@@ -310,7 +314,7 @@ footer {
     text-decoration: none;
 }
 .social:hover{
-    scale: 1.5;
+     transform: scale(1.5);
 }
 
 /****************************************************/
@@ -365,3 +369,219 @@ footer {
     min-height: 100vh;
     background-color: #333;
 }
+
+
+/*/////////////////////CONTACT PAGE//////////////////////////////////////////////////////////////////////////////////-->  */
+.contact_page{
+    min-height: 150vh;
+    min-width: 100vw;
+    z-index: 100;
+}
+/*..........HEADER..............................*/
+.header_contact_page{
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-areas: "logo nav";
+    background-color: black;
+    padding: 2rem 0;
+}
+.header_contact_page a{
+    grid-area: logo;
+}
+.contact_nav{
+    grid-area: nav;
+}
+.contact_nav ul{
+    color: white;
+    justify-content: space-around;
+    font-size: 1.2em;
+}
+/*..........MAIN..............................*/
+.main_contact_page{
+    background-color: white;
+    color: black;
+    display: grid;
+    grid-template-rows: 2fr 0.4fr 1fr;
+    grid-template-columns:1fr;
+    grid-template-areas: "form"
+                         "header_separator"
+                         "maps"
+}
+.form_container{
+    grid-area: form;
+    margin: 5% auto;
+    width:min-content;
+     text-align: justify;
+}
+.form_container > *{
+    margin: 0 0 1em 0;
+    font-size: 1.5em;
+    line-height: 1.5;
+}
+.cell_number{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.cell_number:hover{
+    color: #D0604B;
+}
+.maps_container{
+     grid-area: maps;
+}
+.header_separator{
+     grid-area: header_separator;
+}
+.contact_form{
+    text-align: left;
+    padding: 2em 1em;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr 1fr 1.2fr 0.5fr;
+    grid-template-areas: "name_field"
+                        "email_field"
+                        "location_field"
+                        "subject_field"
+                        "message_field"
+                        "button_field";
+    gap: 0.5em;
+}
+.contact_form input{
+  padding: 1% 2%;
+}
+.contact_form input[type="text"]:focus{
+  outline: none;
+  border: 3px solid #D0604B;
+}
+.contact_form select{
+    padding: 1% 2%;
+    width: 100%;
+}
+
+.name_field{ 
+    grid-area: name_field;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "fn_fld ln_fld";
+    gap: 1em;
+                         
+}
+.fn_fld{grid-area: fn_fld;}
+
+.ln_fld{grid-area: ln_fld;}
+
+.email_field{ 
+    grid-area: email_field;
+}
+.email_field input{
+    display: block;
+    width: 100%;
+}
+.location_field{ grid-area: location_field;}
+.subject_field{ grid-area: subject_field;}
+.message_field{ 
+    grid-area: message_field;
+    display: flex;
+    flex-direction: column;
+}
+.message_field > label{
+    display: block;
+    height: fit-content;
+}
+.message_field > textarea{
+    resize: none;
+}
+.message_field > textarea:focus{
+outline: none;
+  border: 3px solid #D0604B;
+}
+.button_field button{
+    padding: 1em;
+    background-color: black;
+    color: white;
+}
+.button_field button:hover{
+   animation: book_animation 0.4s ease-out forwards;
+   color: black;
+}
+
+.button_field{ grid-area: button_field;}
+
+/*..........FOOTER..............................*/
+.footer_contact_page{
+     display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "contact_footer_logo locations"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*/////////////////////CONTACT PAGE//////////////////////////////////////////////////////////////////////////////////-->  */
+/*..........HEADER..............................*/
+/* .header_contact_page{} */
+/*..........MAIN..............................*/
+/* .main_contact_page{} */
+/*..........FOOTER..............................*/
+/* .footer_contact_page{} */
