@@ -475,6 +475,10 @@ footer {
     display: block;
     width: 100%;
 }
+.email_field input:focus{
+   outline: none;
+  border: 3px solid #D0604B;
+}
 .location_field{ grid-area: location_field;}
 .subject_field{ grid-area: subject_field;}
 .message_field{ 
@@ -490,7 +494,7 @@ footer {
     resize: none;
 }
 .message_field > textarea:focus{
-outline: none;
+  outline: none;
   border: 3px solid #D0604B;
 }
 .button_field button{
