@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
-body{background-color: rgba(26, 26, 26, 0.401)}
+body{background-color: rgba(26, 26, 26, 0.401);}
 .home_page{
      background-color: rgba(26, 26, 26, 0.401);
     display: grid;
@@ -21,6 +21,9 @@ body{background-color: rgba(26, 26, 26, 0.401)}
         "footer";
 }
 /*tool class*/
+.block{
+    display: block;
+}
 .x2{
      transform: scale(2);
 }
@@ -318,7 +321,7 @@ footer {
 }
 
 /****************************************************/
-/***********SPINNER*+********************************/
+/***********SPINNER*+******************************************************************************************************************/
 /****************************************************/
 .spinner {
   margin: 100px auto 0;
@@ -515,77 +518,462 @@ footer {
     grid-template-columns: auto 1fr;
     grid-template-areas: "contact_footer_logo locations"
 }
+/****************************************************/
+/***********MODAL PAGE*+******************************************************************************************************************/
+/****************************************************/
+.modal_page{
+    overflow: hidden !important;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 5000;
+    background-color: rgba(51, 51, 51, 0.9);
+    min-width: 100vw;
+    min-height: 100vh;
+}
+.modal_book{
+    width: 30%;
+    height: 100vh;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 10% 1fr;
+    grid-template-areas: "header_modal" 
+                         "main_modal";
+}
+.modal_book figure{
+    width: 100%;
+    grid-area: header_modal;
+}
+.main_modal{
+    grid-area: main_modal;
+    display: grid;
+   
+}
+.modal_location, .modal_services{
+     grid-template-rows: 1.5fr 1fr 1fr 1fr 3fr;
+     grid-template-areas: "modal_title"
+                         "button_1"
+                         "button_2"
+                         "button_3"
+                         "div_close";
+}
+.modal_services .btn_modal{
+    display: flex;
+    justify-content: space-evenly;
+}
+._modal .btn_modal:hover{
+    background-color: inherit;
+    cursor:inherit;
+}
+.btn_modal{
+    background-color: white;
+    border-top: 1px solid black;
+}
+.btn_modal:hover{
+    background-color: rgba(163, 163, 163,0.2);
+    cursor: pointer;
+}
+
+ .modal_title{ grid-area: modal_title;}
+.button_1{ grid-area: button_1;}
+.button_2{ grid-area: button_2}
+.button_3 {grid-area: button_3; border-bottom: 1px solid black;}
+.div_close{ grid-area: div_close}
+.div_close button{
+    padding: 0.8em 1em;
+    background-color: black;
+    color: white;
+}
+.div_close button:hover{
+   animation: book_animation 0.4s ease-out forwards;
+   color: black;
+}
+/************MODAL_WHEN*********************************************/
+.modal_when{
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: "modal_title"
+                         "date_field"
+                         "time_field"
+                         "continue";
+    gap: 2em;
+    margin-top: 2em;
+}
+.continue_btn{
+    grid-area: continue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 2em;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.005);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 1s infinite;
+}
+
+.continue_btn:hover{
+    animation: book_animation 0.4s ease-out forwards;
+    color: black;
+    an
+}
+
+.date_field{
+    max-width: 100%;
+    margin: 0 2%;
+    grid-area: date_field;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "title title title title title title title"
+                         "day_1 day_2 day_3 day_4 day_5 day_6 day_7";
+}
+
+.title_day{
+    grid-area: title;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+.day_1, .day_2, .day_3, .day_4, .day_5, .day_6, .day_7{
+    max-width: 100%
+    font-size: 0.5em;
+    text-align: center;
+    padding: 0.5em;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.day_1:hover, .day_2:hover, .day_3:hover, .day_4:hover, .day_5:hover, .day_6:hover, .day_7:hover{
+    background-color: rgba(208, 96, 76, 0.5);
+    color: white;
+}
+.day_1.active_date, .day_2.active_date, .day_3.active_date, .day_4.active_date, .day_5.active_date, .day_6.active_date, .day_7.active_date{     
+    background-color: rgb(208, 96, 76);
+    color: white;
+}
+.day_1{
+    grid-area: day_1;
+}
+
+.day_2{
+    grid-area: day_2;
+}
+
+.day_3{
+    grid-area: day_3;
+}
+
+.day_4{
+    grid-area: day_4;
+}
+
+.day_5{
+    grid-area: day_5;
+}
+
+.day_6{
+    grid-area: day_6;
+}
+
+.day_7{
+    grid-area: day_7;
+}
+.time_field{
+    max-width: 100%;
+    margin: 0 2%;
+    grid-area: time_field;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "time_title time_title time_title time_title"
+                         "time_1 time_2 time_3 time_4"
+                         "time_5 time_6 time_7 time_8"
+                         "time_9 time_10 time_11 time_12"
+                         "time_13 time_14 time_15 time_16"; 
+}
+.time_title{
+    grid-area: time_title;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+.time_1, .time_2, .time_3, .time_4, .time_5, .time_6, .time_7, .time_8,
+.time_9, .time_10, .time_11, .time_12, .time_13, .time_14, .time_15, .time_16{
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.time_1:hover, .time_2:hover, .time_3:hover, .time_4:hover, .time_5:hover, .time_6:hover, .time_7:hover, .time_8:hover,
+.time_9:hover, .time_10:hover, .time_11:hover, .time_12:hover, .time_13:hover, .time_14:hover, .time_15:hover, .time_16:hover{
+    background-color: rgba(208, 96, 76, 0.5);
+    color: white;
+}
+.time_1.active_time, .time_2.active_time, .time_3.active_time, .time_4.active_time, .time_5.active_time, .time_6.active_time, .time_7.active_time, .time_8.active_time,
+.time_9.active_time, .time_10.active_time, .time_11.active_time, .time_12.active_time, .time_13.active_time, .time_14.active_time, .time_15.active_time, .time_16.active_time{
+    background-color: rgb(208, 96, 76);
+    color: white;
+}
+.time_1{
+    grid-area: time_1;
+}
+.time_2{
+    grid-area: time_2;
+}
+.time_3{
+    grid-area: time_3;
+}
+.time_4{
+    grid-area: time_4;
+}
+.time_5{
+    grid-area: time_5;
+}
+.time_6{
+    grid-area: time_6;
+}
+.time_7{
+    grid-area: time_7;
+}
+.time_8{
+    grid-area: time_8;
+}
+.time_9{
+    grid-area: time_9;
+}
+.time_10{
+    grid-area: time_10;
+}
+.time_11{
+    grid-area: time_11;
+}
+.time_12{
+    grid-area: time_12;
+}
+.time_13{
+    grid-area: time_13;
+}
+.time_14{
+    grid-area: time_14;
+}
+.time_15{
+    grid-area: time_15;
+}
+.time_16{
+    grid-area: time_16;
+}
+.noclick {
+  pointer-events: none;
+  opacity: 0.5; 
+}
+/****************************************************/
+/************MODAL_WORKER*********************************************/
+/****************************************************/
+.modal_worker{
+    margin: 1em auto;
+    width: 90%;
+    max-height: 80%;
+    display: grid;
+    grid-template-rows:  1,5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "worker_header"
+                         "worker_1"
+                         "worker_2"
+                         "worker_3"
+                         "worker_4"
+                         "worker_5"
+                         "worker_6";
+}
+.modal_worker .modal_title{
+    grid-area: worker_header;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.worker_1, .worker_2, .worker_3, .worker_4, .worker_5, .worker_6{
+    display: grid;
+    grid-template-columns: 15% 1fr auto;
+    grid-template-areas: "worker_image worker_name worker_price";
+}
+.worker_image{
+    grid-area: worker_image;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.worker_image img{
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+}
+
+.worker_name{
+    grid-area: worker_name;
+}
+.worker_price{
+    grid-area: worker_price;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 300;
+    color: rgb(208, 96, 76);
+    padding: 0 0.8em;
+}
+
+.worker_1{
+    grid-area: worker_1;
+}
+.worker_2{
+    grid-area: worker_2;
+}
+.worker_3{
+    grid-area: worker_3;
+}
+.worker_4{
+    grid-area: worker_4;
+}
+.worker_5{
+    grid-area: worker_5;
+}
+.worker_6{
+    grid-area: worker_6;
+    border-bottom: 1px solid black;
+}
+/*-------END MODAL_epilogue------------------*/
+/****************************************************/
+.modal_final_form{
+    display: grid;
+    height: 60%;
+    grid-template-rows: auto 1fr 2fr auto ;
+    grid-template-areas: "final_header"
+                         "final_epilogue"
+                         "final_form"
+                         "final_button";
+    gap: 1em;
+    margin: 2em auto;
+    width: 90%;
+}
+.final_button{
+    grid-area: final_button;
+    display: flex;
+    justify-content: center;
+}
+
+.modal_final_form .modal_title{
+    grid-area: final_header;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.final_form{
+    grid-area: final_form;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "final_name"
+                         "final_surname"
+                         "final_email"
+                         "final_cell";
+                         
+    gap: 0.5em;
+}
+
+.epilogue{
+    grid-area: final_epilogue;
+    min-width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "eplg_loc eplg_hairdr"
+                         "eplg_serv eplg_price";
+}
+
+.eplg_loc{
+    grid-area: eplg_loc;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;
+    padding-top: 1.5em;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+    border-color: black;
+}
+.eplg_hairdr{
+    grid-area: eplg_hairdr;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;    padding-top: 1.5em;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: black;
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "legend legend"
+                         "img chosen";
+}
+.eplg_hairdr strong{
+    grid-area: legend;
+}
+.eplg_hairdr img{
+    grid-area: img;
+    padding: 10%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+.eplg_hairdr p{
+    grid-area: chosen;
+    display: flex;
+    align-items: center;
+    margin-left: 2em;
+}
+.eplg_serv{
+    grid-area: eplg_serv;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: black;
+}
+.eplg_price{
+    grid-area: eplg_price;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: black;
+}
+
+.inputForm_modal{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*/////////////////////CONTACT PAGE//////////////////////////////////////////////////////////////////////////////////-->  */
-/*..........HEADER..............................*/
-/* .header_contact_page{} */
-/*..........MAIN..............................*/
-/* .main_contact_page{} */
-/*..........FOOTER..............................*/
-/* .footer_contact_page{} */

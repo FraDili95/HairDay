@@ -45,14 +45,13 @@
       </div>
         <nav class="nav_home">
           <ul>
-            <li class="homePageBtn li_active" onclick="navigationManager(event.target.classList[0], event.target )">HOMEPAGE</li>
-            <li class="servicesBtn" onclick="navigationManager(event.target.classList[0], event.target )">SERVICES</li>
-            <li class="contactBtn" onclick="navigationManager(event.target.classList[0], event.target )">CONTACT</li>
-            <li class="aboutBtn" onclick="navigationManager(event.target.classList[0], event.target )">ABOUT US</li>
+            <li class="homePageBtn">HOMEPAGE</li>
+            <li class="servicesBtn">SERVICES</li>
+            <li class="contactBtn">CONTACT</li>
+            <li class="aboutBtn">ABOUT US</li>
           </ul>
         </nav>
     </header>
-
 
     <main>
       <!--HERO-->
@@ -101,7 +100,7 @@
         <button class="arrow_left" onclick="previousReview()"><i class="fa-solid fa-arrow-left"></i></button>
         <button class="arrow_right" onclick="nextReview()"><i class="fa-solid fa-arrow-right"></i></button>
 
-        <article class="review inactive">
+        <article class="review ">
           <cite class="block text-center"></cite>
           <hr style="margin: 3% 0;">
           <div class="star_container text-center"></div>
@@ -117,7 +116,7 @@
           <blockquote class="block text-center description_review"></blockquote>
         </article>
 
-        <article class="review inactive">
+        <article class="review ">
           <cite class="block text-center"></cite>
           <hr style="margin: 3% 0;">
           <div class="star_container text-center"></div>
@@ -199,10 +198,10 @@
       </a>
       <nav class="contact_nav">
          <ul class="flex_center adapt">
-            <li class="homePageBtn" onclick="navigationManager(event.target.classList[0], event.target )">HOMEPAGE</li>
-            <li class="servicesBtn" onclick="navigationManager(event.target.classList[0], event.target)">SERVICES</li>
-            <li class="contactBtn" onclick="navigationManager(event.target.classList[0], event.target)">CONTACT</li>
-            <li class="aboutBtn" onclick="navigationManager(event.target.classList[0], event.target)">ABOUT US</li>
+            <li class="homePageBtn">HOMEPAGE</li>
+            <li class="servicesBtn">SERVICES</li>
+            <li class="contactBtn">CONTACT</li>
+            <li class="aboutBtn">ABOUT US</li>
           </ul>
       </nav>
     </header>
@@ -273,9 +272,25 @@
     <!--FOOTER......-->
     <!-- <footer class="footer_contact_page"></footer> -->
   </section>
+<!--/////////////////////MODAL//////////////////////////////////////////////////////////////////////////////////-->
+  <section class="modal_page none">
+    <aside class="modal_book">
+      <figure class="flex_center"><img class="img_fluid" src="/Assets/logo/Artboard 22.png" alt=""></figure>
+      <div class="main_modal ">
+        <h3 class="modal_title flex_center"></h3>
+        
+        <div class="div_close flex_center ">
+          <button class="close t_center uppercase">return to the page</button>
+        </div>                   
+      </div>
+    </aside>
+  </section>
    <!-- JS -->
-  <script src="script.js"></script>
+  <script  src="script.js"></script>
   <!--JS library for pic views(FANCYBOX)-->
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+  <!--DOMPurify-->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+
 </body>
 </html>
