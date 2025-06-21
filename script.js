@@ -1,8 +1,3 @@
-/////////////////////////////////////
-// DATA SOURCE - Array of reviews
-// 🇬🇧 Data containing all the reviews
-// 🇮🇹 Dati contenenti tutte le recensioni
-/////////////////////////////////////
 const dataReviews = [
     { name: "John Smith", rate: 5, date: "August 12, 2023", description: "Excellent haircut and friendly staff. I always leave feeling confident and happy with my look." },
     { name: "Emily Johnson", rate: 4.8, date: "July 30, 2023", description: "Loved the haircut and the attention to detail. The salon has a great atmosphere and welcoming team." },
@@ -22,14 +17,9 @@ const internalLinkBtn = {
     contactBtn:  "contact_page",
     aboutBtn:    "about_page"
 };
-/////////////////////////////////////
-// NAVIGATION MANAGEMENT - Event Delegation
-// 🇬🇧 Single event listener handles all navigation clicks via event bubbling
-// 🇮🇹 Un solo listener gestisce tutta la navigazione tramite delegazione eventi
-/////////////////////////////////////
+
 const body = document.querySelector("body");
 body.addEventListener("click",(e)=>{
-    //if the clicked element is inside a nav 
     if (
         e.target.parentElement && 
         e.target.parentElement.parentElement && 
@@ -37,19 +27,13 @@ body.addEventListener("click",(e)=>{
     ) {
         navigationManager(e.target.classList[0], e.target);
     }
-     
-})
+});
 
 function navigationManager(clicked, element) {
-    const oldPage = selectorNavBtn(clicked, element); // update nav button active state
-    setPageActive(clicked, oldPage); // switch pages
+    const oldPage = selectorNavBtn(clicked, element);
+    setPageActive(clicked, oldPage);
 }
 
-
-
-/////////////////////////////////////
-// Handles nav buttons and page switching
-/////////////////////////////////////
 function selectorNavBtn(clicked, element) {
     const oldPageTmp = currentNavBtnActive;
     if (!element.classList.contains("li_active")) {
@@ -57,19 +41,26 @@ function selectorNavBtn(clicked, element) {
         currentNavBtnActive = clicked;
         navButtonSeekerSelector(currentNavBtnActive).classList.add("li_active");
     }
-    return oldPageTmp; // return old nav state
+    return oldPageTmp;
 }
 
 function navButtonSeekerSelector(currentNavBtnActive) {
     switch (currentNavBtnActive) {
         case "homePageBtn": {
-            // find the actual button DOM in nav
             const homeBtn = document.querySelector(".nav_home").firstElementChild.children;
             return [...homeBtn].find(el => el.classList.contains("homePageBtn"));
         }
         case "contactBtn": {
             const cntBtn = document.querySelector(".contact_nav").firstElementChild.children;
             return [...cntBtn].find(el => el.classList.contains("contactBtn"));
+        }
+        case "aboutBtn": {
+            const cntBtn = document.querySelector(".about_nav").firstElementChild.children;
+            return [...cntBtn].find(el => el.classList.contains("aboutBtn"));
+        }
+        case "servicesBtn": {
+            const cntBtn = document.querySelector(".services_nav").firstElementChild.children;
+            return [...cntBtn].find(el => el.classList.contains("servicesBtn"));
         }
         default:
             return null;
@@ -80,21 +71,15 @@ function setPageActive(clicked, old) {
     const keyOldPage = internalLinkBtn[old];
     const keyNext = internalLinkBtn[clicked];
 
-    document.querySelector(`.${keyOldPage}`).classList.add("none"); // hide old page
+    document.querySelector(`.${keyOldPage}`).classList.add("none");
 
-    pointerSpinnerPage.classList.remove("none"); // show loader
+    pointerSpinnerPage.classList.remove("none");
     setTimeout(() => {
-        pointerSpinnerPage.classList.add("none"); // hide loader
-        document.querySelector(`.${keyNext}`).classList.remove("none"); // show new page
-    }, 1000);
+        pointerSpinnerPage.classList.add("none");
+        document.querySelector(`.${keyNext}`).classList.remove("none");
+    }, 700);
 }
 
-
-/////////////////////////////////////
-// GLOBAL VARIABLES
-// 🇬🇧 Used to store navigation state and DOM pointers
-// 🇮🇹 Utilizzate per memorizzare lo stato e riferimenti al DOM
-/////////////////////////////////////
 let currentIndex = 0;
 let targetInjection = [];
 let currentNavBtnActive = "homePageBtn";
@@ -102,75 +87,85 @@ let currentNavBtnActive = "homePageBtn";
 const pointerHomePage = document.querySelector(".home_page");
 const pointerSpinnerPage = document.querySelector(".page_loading");
 const pointerContactPage = document.querySelector(".contact_page");
+const pointerAboutPage = document.querySelector(".about_page");
+const pointerServicesPage = document.querySelector(".services_page");
 
-/////////////////////////////////////
-// INIT - When DOM is ready
-// 🇬🇧 Initializes DOM references and populates initial reviews
-// 🇮🇹 Inizializza i riferimenti e mostra le prime recensioni
-/////////////////////////////////////
+function scrollEffectHeader(header) {
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            header.classList.add('resized');
+            if(header.classList.contains("header_about_page")
+            || header.classList.contains("header_services_page")){
+              header.style.position = 'fixed';
+            }
+          } else {
+             if(header.classList.contains("header_about_page")
+             || header.classList.contains("header_services_page") ){
+              header.style.position = 'static';
+            }
+            header.classList.remove('resized');
+            header.animate([
+                { padding: '0' },
+                { padding: '1rem' },
+                { padding: '2rem' }
+            ], {
+                duration: 500,
+                easing: 'linear'
+            });
+        }
+    });
+   }
 document.addEventListener("DOMContentLoaded", function () {
-    targetInjection = arrayWithAllPunctOfReviews(); // collect review slots (DOM nodes)
-    reviewsPopulator(); // populate initial reviews
+    targetInjection = arrayWithAllPunctOfReviews();
+    reviewsPopulator();
 
-    // automatic updating every 5 seconds
     setInterval(() => {
-        currentIndex++;
+        currentIndex = (currentIndex + 1) % dataReviews.length;
         reviewsPopulator();
     }, 5000);
+
+    const contact_header = document.querySelector(".header_contact_page");
+    const about_header = document.querySelector(".header_about_page")
+    const services_header = document.querySelector(".header_services_page")
+
+   scrollEffectHeader(contact_header);
+   scrollEffectHeader(about_header);
+   scrollEffectHeader(services_header);
 });
-
-
-/////////////////////////////////////
-// REVIEW CAROUSEL LOGIC
-// Manages prev/next review functionality
-/////////////////////////////////////
 function previousReview() {
-    currentIndex === 0 ? currentIndex = dataReviews.length - 1 : currentIndex--;
+    currentIndex = (currentIndex - 1 + dataReviews.length) % dataReviews.length;
     reviewsPopulator();
 }
 
 function nextReview() {
-    currentIndex === dataReviews.length - 1 ? currentIndex = 0 : currentIndex++;
+    currentIndex = (currentIndex + 1) % dataReviews.length;
     reviewsPopulator();
 }
 
 function reviewsPopulator() {
-    // Populate three slots: previous, current, next
-    for (let i = 0; i < 3; i++) {
-        if (i === 0) {
-            const idx = currentIndex === 0 ? dataReviews.length - 1 : currentIndex - 1;
-            populatorThroughIndex(idx, 0);
-        } else if (i === 1) {
-            populatorThroughIndex(currentIndex, 1);
-        } else {
-            const idx = currentIndex === dataReviews.length - 1 ? 0 : currentIndex + 1;
-            populatorThroughIndex(idx, 2);
-        }
-    }
+    const indices = [
+        (currentIndex - 1 + dataReviews.length) % dataReviews.length,
+        currentIndex,
+        (currentIndex + 1) % dataReviews.length
+    ];
+
+    indices.forEach((reviewIndex, i) => {
+        populatorThroughIndex(reviewIndex, i);
+    });
 }
 
 function populatorThroughIndex(indexData, indexReview) {
-    // Check if dataReviews is defined and if the index is valid
-    if (!Array.isArray(dataReviews) || indexData < 0 || indexData >= dataReviews.length) {
-        return;
-    }
+    if (!Array.isArray(dataReviews) || indexData < 0 || indexData >= dataReviews.length) return;
 
     const tmpObj = dataReviews[indexData];
     const reviewTarget = targetInjection?.[indexReview];
 
-    // Check if reviewTarget is valid
-    if (!Array.isArray(reviewTarget) || reviewTarget.length < 4) {
-        return;
-    }
+    if (!Array.isArray(reviewTarget) || reviewTarget.length < 4) return;
 
-    // Name
-    if (typeof tmpObj.name === "string" && tmpObj.name.trim() !== "") {
-        reviewTarget[0].innerText = tmpObj.name;
-    } else {
-        reviewTarget[0].innerText = "Anonymous";
-    }
+    reviewTarget[0].innerText = typeof tmpObj.name === "string" && tmpObj.name.trim() !== ""
+        ? tmpObj.name
+        : "Anonymous";
 
-    // Stars
     reviewTarget[1].innerHTML = "";
     try {
         const starsNode = generateStars(tmpObj.rate || 0);
@@ -179,17 +174,11 @@ function populatorThroughIndex(indexData, indexReview) {
         console.error("Error generating stars:", e);
     }
 
-    // Date
     reviewTarget[2].innerText = tmpObj.date || "Date not available";
-
-    // Description
     reviewTarget[3].innerText = tmpObj.description || "No description.";
 }
 
-
-
 function generateStars(rate) {
-    // create star icons dynamically based on rating
     const full = Math.floor(rate);
     const half = rate % 1 >= 0.25 && rate % 1 < 0.75;
     const empty = 5 - full - (half ? 1 : 0);
@@ -197,79 +186,67 @@ function generateStars(rate) {
 
     for (let i = 0; i < full; i++) {
         const star = document.createElement("i");
-        star.className = "fa-solid fa-star star"; // full star
+        star.className = "fa-solid fa-star star";
         container.appendChild(star);
     }
 
     if (half) {
         const star = document.createElement("i");
-        star.className = "fa-solid fa-star-half-stroke star"; // half star
+        star.className = "fa-solid fa-star-half-stroke star";
         container.appendChild(star);
     }
 
     for (let i = 0; i < empty; i++) {
         const star = document.createElement("i");
-        star.className = "fa-regular fa-star"; // empty star
+        star.className = "fa-regular fa-star";
         container.appendChild(star);
     }
 
     return container;
 }
 
-/////////////////////////////////////
-// DOM UTILITY FUNCTIONS
-// Collects review DOM nodes and filters child tags
-/////////////////////////////////////
-function getReviewsHtmlCollection() {
-    const domReviews = document.getElementsByClassName("review");
+function getReviewsHtmlCollection(classChoose) {
+    const domReviews = document.getElementsByClassName(`${classChoose}`);
     return Array.from(domReviews);
 }
 
 function sorter(localTag) {
-    // only allow certain tags
-    switch (localTag) {
-        case "cite":
-        case "div":
-        case "span":
-        case "blockquote":
-            return localTag;
-        default:
-            return 0;
-    }
+    return ["cite", "div", "span", "blockquote"].includes(localTag) ? localTag : 0;
 }
 
 function arrayWithAllPunctOfReviews() {
-    const pointers = getReviewsHtmlCollection();
+    const pointers = getReviewsHtmlCollection("review");
     const result = [];
 
     pointers.forEach(reviewBox => {
         const collectionTmp = [];
         Array.from(reviewBox.children).forEach(child => {
             const tag = child.tagName.toLowerCase();
-            if (sorter(tag) !== 0) {
+            if (sorter(tag)) {
                 collectionTmp.push(child);
             }
         });
         result.push(collectionTmp);
     });
 
-    return result; // nested arrays of allowed child elements
+    return result;
 }
 
 
 ///MODAL/FORM///MODAL//FORM//MODAL//FORM//MODAL//FORM/////////////////////////////////////////////////////
 //////////BOOKING BUTTON HERO///////////////////////////
-document.querySelector(".booking").addEventListener("click", () => {
+function openModal(pointer) {
+   pointer.addEventListener("click", () => {
     document.querySelector("body").style.overflow = "hidden"; // prevent body scroll
     document.querySelector(".modal_page").classList.remove("none"); // show modal
-    const buttonclose = document.querySelector("div_close");
+    const buttonclose = document.querySelector(".div_close");
     if(buttonclose && buttonclose.classList.contains("none")){
         buttonclose.classList.remove("none");
     }
     modalManager("modal_location");
-    
-    
-});
+ });
+}
+document.querySelectorAll(".booking").forEach(openModal); // apply event listener to booking buttons
 // apply event listener to modal page and manage tasks with delegation events
 const modalPage = document.querySelector(".modal_page");
 modalPage.addEventListener("click", (e) => {
@@ -492,14 +469,12 @@ function taskManagerModal(e) {
                   match = target.className.match(/\d+/g);
                 }
 
-              console.log("crcr");
               
               chosenData.hairdresser = data_form_modal.modal_worker.data[match[0]-1]; 
               chosenData.pic = data_form_modal.modal_worker.pics[match[0]-1];
               let addCosts = data_form_modal.modal_worker.prices[[match[0]-1]].match(/\d+/);
               
               chosenData.extraCosts =  parseInt(addCosts[0]);
-              console.log(addCosts[0]);
               let container = document.querySelector(".main_modal");
               container.remove();
               createTemplateFinalForm(); // create final form template
@@ -849,3 +824,54 @@ function sendFormModal (event) {
   }
   
 }
+///////////////////////////////////////////////////////////////////////////
+//////////header contact page/////////////////////////////////////////////
+//////////////////////////////////////
+//only central europe
+function randomlat() {
+  const lat = Math.round(((Math.random() * (51 - 45) + 45) * 10000)) / 10000;  return lat;
+}
+function randomlon() {
+  const lon = Math.round(((Math.random() * (20 - 5) + 5) * 10000)) / 10000;  return lon;
+}
+
+function initMap(map_location) {
+    
+    const position = { lat: randomlat(), lng: randomlon() }; // random choose
+
+    const map = new google.maps.Map(document.querySelector(`#${map_location}`), {
+      center: position,
+      zoom: 12,
+      disableDefaultUI: true, // simple
+      gestureHandling: "cooperative", //scroll
+      zoomControl: false,
+      styles: [
+    {
+      elementType: 'all',
+      stylers: [
+        { saturation: -100 },
+        { lightness: 0 }
+      ]
+    }
+  ]
+    });
+
+    new google.maps.Marker({
+      position: position,
+      map: map,
+      title: "random place",
+      icon: {
+      url: './Assets/logo/icons8-h-100.png',    
+      scaledSize: new google.maps.Size(30, 30), 
+      }
+    });
+  }
+ function allMapsInit() {
+  initMap("map_one");
+  initMap("map_two");
+  initMap("map_three");
+}
+
+
+
+

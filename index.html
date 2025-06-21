@@ -30,8 +30,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Fancybox CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
-  <!--JS library for spinner(SPINJS)-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/4.1.0/spin.min.js"></script>
 </head>
 <body>
   
@@ -192,8 +190,8 @@
 <!--/////////////////////CONTACT PAGE//////////////////////////////////////////////////////////////////////////////////-->  
   <section class="contact_page none">
     <!--HEADER......-->
-    <header class="header_contact_page " style="z-index: 100000;">
-      <a href="/" class="flex_center adapt">
+    <header class="header_contact_page alternative_header" style="z-index: 100000;">
+      <a href="/" class="flex_center adapt logo_contact_header">
           <img class="img_fluid" style="max-width: 75%;" src="./Assets/logo/Artboard 23.png" alt="logo hair_day salon">
       </a>
       <nav class="contact_nav">
@@ -207,7 +205,7 @@
     </header>
     <!--MAIN......-->
     <main class="main_contact_page">
-      <div class="form_container">
+    <div class="form_container">
         <h2 class="flex_center uppercase x2">contact us</h2>
         <strong>To cancel an appointment, we recommend calling us directly at <strong class="cell_number">123.478.888.16</strong> to ensure prompt communication with our staff.</strong>
         <span>
@@ -264,18 +262,63 @@
           <button type="submit" class="uppercase flex_center" aria-label="Send the form"><strong>Send</strong></button>
         </div>
       </form>
-
       </div>
-      <div class="header_separator"></div>
-      <div class="maps_container"></div>
+      <!---------------header--separator------------------------------------------------------------------------------------------------------------------------------------------------->  
+      <div class="header_separator flex_center">
+        <h2 class="uppercase">locations</h2>
+      </div>
+      <div class="maps_container">
+          <div id="container_map_one">
+            <h3 class="t_center x2">Wallaby BC</h3>
+            <h4 class="t_center">742 Wallaby St #12
+            <br>Wallaby, BC V1W 3A4</h4>
+            <div id="map_one"></div>
+          </div>
+          <div id="container_map_two">
+            <h3 class="t_center x2">Lunenburg <br> Kelowna</h3>
+            <h4 class="t_center">295 Orchard Valley Dr #204
+              <br>Kelowna, BC V1Y 6P6</h4>
+            <div id="map_two"></div>
+          </div>
+          <div id="container_map_three">
+            <h3 class="t_center x2">Tofino <br> Kelowna</h3>
+            <h4 class="t_center uppercase">67 Driftwood Lane
+            <br/> Tofino, BC V0R 2Z0</h4>
+            <div id="map_three"></div>
+          </div>
+      </div>
     </main>
     <!--FOOTER......-->
-    <!-- <footer class="footer_contact_page"></footer> -->
+    <footer class="footer_contact_page flex_center alternative_footer">
+      <div class="contact_footer_logo flex_center">
+            <a href="/"  style="margin-top: -15%;"><img class="img_fluid" src="Assets/logo/Artboard 19.png" alt="logo hair_day"></a>
+      </div>
+      <div class="locations_footer_contact uppercase">
+        <div class="contact_footer_element">
+          <span>Wallaby BC</span>
+          <br>
+          <span>742 Wallaby St #12
+            <br>Wallaby, BC V1W 3A4</span>
+        </div>
+        <div class="contact_footer_element">
+            <span>Lunenburg Kelowna</span>
+            <br>
+            <span>295 Orchard Valley Dr #204
+              <br>Kelowna, BC V1Y 6P6</span>
+        </div>
+        <div class="contact_footer_element">
+            <span>Tofino Kelowna</span>
+            <br>
+            <span>67 Driftwood Lane
+            <br/> Tofino, BC V0R 2Z0</span>
+        </div>
+      </div>
+    </footer>
   </section>
 <!--/////////////////////MODAL//////////////////////////////////////////////////////////////////////////////////-->
-  <section class="modal_page none">
+  <section class="modal_page none" style="z-index: 10000000;">
     <aside class="modal_book">
-      <figure class="flex_center"><img class="img_fluid" src="/Assets/logo/Artboard 22.png" alt=""></figure>
+      <figure class="flex_center"><img class="img_fluid" src="/Assets/logo/Artboard 22.png" alt="logo hair_day"></figure>
       <div class="main_modal ">
         <h3 class="modal_title flex_center"></h3>
         
@@ -285,12 +328,237 @@
       </div>
     </aside>
   </section>
+  <!--/////////////////////ABOUT PAGE//////////////////////////////////////////////////////////////////////////////////-->
+  <section class="about_page none">
+    <!--HEADER......-->
+    <header class="header_about_page alternative_header" style="z-index: 100000;">
+      <a href="/" class="flex_center adapt">
+          <img class="img_fluid" style="max-width: 75%;" src="./Assets/logo/Artboard 23.png" alt="logo hair_day salon">
+      </a>
+      <nav class="about_nav">
+         <ul class="flex_center adapt">
+            <li class="homePageBtn">HOMEPAGE</li>
+            <li class="servicesBtn">SERVICES</li>
+            <li class="contactBtn">CONTACT</li>
+            <li class="aboutBtn">ABOUT US</li>
+          </ul>
+      </nav>
+    </header>
+    <!--MAIN........-->
+    <main class="main_about_page">
+      <figure class="hero_pic flex_center">
+        <strong class="uppercase x3">book an appointment: <span class="cell_number_about">123.478.888.16</span></strong>
+      </figure>
+      <div class="presentation flex_center">
+        <div class="presentation_text" style="width: 80%;">
+            <h3 class="uppercase t_center">welcome to hair day salon</h3>
+            <p>In the heart of the city, there’s a salon where your look truly comes to life… but beware: here, creativity has a few… unusual shades.</p>
+            
+            <p>Among our hair artists, you’ll find a colorist with a touch so precise it seems almost surgical. Some say that when they start mixing colors, the air fills with a rather… peculiar atmosphere. Clients leave with flawless hues, of course, but it’s not uncommon for them to experience slight shivers down their spine or strange dreams about “sharp scissors” the following night. Don’t worry—it’s just the price you pay for gourmet-level beauty!</p>
+            
+            <p>Then there’s the master of nighttime hairstyles: the hairdresser who transforms your hair into true works of art… of nightmare. Their cuts have edges so sharp you might wonder if those are just scissors or claws. Some clients swear they’ve heard a faint whisper while they worked, but maybe it was just the wind through the hair… or maybe not. If you love to dare with your look, get ready to leave the salon with a hairstyle you won’t easily forget — and perhaps neither will your dreams.</p>
+            
+            <p>Of course, the rest of our team consists of less… “singular” professionals, but equally skilled, ready to give you elegant cuts and stylish looks.</p>
+            
+            <p>The salon is open Monday through Saturday, and appointments are highly recommended — for those brave enough to trust truly expert hands.</p>
+        </div>
+        <div class="presentation_blocks">
+          <div class="presentation_block">
+            <img src="/Assets/hairstylers/staf2.jpg" class="img_fluid">
+          </div>
+          <div class="presentation_block t_center">
+            <h4>A perfect cut... or wickedly perfect?</h4>
+            <p>Want to refresh your look or need a hairstyle to die for on a special occasion? Here, every haircut is a little beauty ritual, performed by expert hands... and scissors that seem to have a mind of their own.
+
+              Our team isn’t made of just hairdressers — think of them as style conjurers. They’ll listen to you, advise you, and then, with a smile (sometimes a slightly unsettling one), they’ll transform your hair into something unforgettable… even in your dreams.
+
+              For every big event — weddings, graduations, exclusive parties, or mysterious nighttime appearances — we’ve got the right style. Elegant, classic, or with an unusual twist: just ask (but choose your words wisely… the scissors are sensitive).
+
+              Book your appointment… and get ready to stand out. Beauty, in our salon, always comes with a sharp edge.</p>
+          </div>
+          <div class="presentation_block">
+              <img src="/Assets/hairstylers/staff3.jpg" class="img_fluid">
+          </div>
+        </div>
+      </div>
+      <div class="book_app flex_center">
+          <div>
+            <button class="btn_book_about booking"><i class="fa-solid fa-receipt"></i></button>
+            <span class="uppercase">To book an appointment at the beauty salon, write to <br>
+              <strong>contact@hairdaybeauty.com</strong><br> 
+              or click on the booking button.</span>
+          </div>
+      </div>
+    </main>
+    <!--FOOTER......-->
+    <footer class=" footer_about_page alternative_footer flex_center ">
+      <div class="contact_footer_logo flex_center">
+            <a href="/"  style="margin-top: -15%;"><img class="img_fluid" src="Assets/logo/Artboard 19.png" alt="logo hair_day"></a>
+      </div>
+      <div class="locations_footer_contact uppercase">
+        <div class="contact_footer_element">
+          <span>Wallaby BC</span>
+          <br>
+          <span>742 Wallaby St #12
+            <br>Wallaby, BC V1W 3A4</span>
+        </div>
+        <div class="contact_footer_element">
+            <span>Lunenburg Kelowna</span>
+            <br>
+            <span>295 Orchard Valley Dr #204
+              <br>Kelowna, BC V1Y 6P6</span>
+        </div>
+        <div class="contact_footer_element">
+            <span>Tofino Kelowna</span>
+            <br>
+            <span>67 Driftwood Lane
+            <br/> Tofino, BC V0R 2Z0</span>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <!--/////////////////////SERVICES PAGE//////////////////////////////////////////////////////////////////////////////////-->
+  <section class="services_page none">
+    <!--/HEADER......-->
+    <header class="header_services_page alternative_header" style="z-index: 100000;">
+      <a href="/" class="flex_center adapt">
+          <img class="img_fluid" style="max-width: 75%;" src="./Assets/logo/Artboard 23.png" alt="logo hair_day salon">
+      </a>
+      <nav class="services_nav">
+         <ul class="flex_center adapt">
+            <li class="homePageBtn">HOMEPAGE</li>
+            <li class="servicesBtn">SERVICES</li>
+            <li class="contactBtn">CONTACT</li>
+            <li class="aboutBtn">ABOUT US</li>
+          </ul>
+      </nav>
+    </header>
+    <!--main......-->
+    <main class="main_services_page">
+      <div class="reviewBlockOne rwbl">
+        <i class="fa-solid fa-quote-left x3 orange"></i>
+         <i>John Smith</i>
+        <p style="text-align: justify;width: 75%;">Excellent haircut and friendly staff. I always leave feeling confident and happy with my look.</p>
+      </div>
+      <div class="reviewBlockTwo rwbl">
+        <i class="fa-solid fa-quote-left x3 orange"></i>
+        <i>James Anderson</i>
+        <p style="text-align: justify;width: 75%;">February 8, 2023,Loved the style and how easy it was to book an appointment. Staff was very attentive.</p>
+      </div>
+      <div class="reviewBlockThree rwbl">
+        <i class="fa-solid fa-quote-left x3 orange"></i>
+         <i>Sophia Moore</i>
+        <p style="text-align: justify;width: 75%;">Amazing service with great attention to detail. I always leave feeling refreshed and confident.</p>
+      </div>
+      <div class="servicesBlock">
+        <div class="servicesBlockTitle">
+          <h2 class="uppercase x2">services</h2>
+          <br>
+          <span>Our services include:</span>
+        </div>
+        <div class="serviceOne srv">           
+          <img src="Assets/img_portfolio/work1.jpg" alt="hair cut" class="img_fluid">
+          <h5 class="t_center x2">Color/ombre</h5>
+          <p>
+            <strong>Base color with blow-dry</strong><br>
+            Includes shampoo and a mask for color-treated hair.
+          </p>
+          <p>Brilliant, vibrant, and organic permanent color – 100% coverage 
+            of white hair,with organic plant oils. 50€</p>
+          <p style="margin-bottom: 1em;">Duration: 30 minutes</p>
+        </div> 
+        <div class="serviceTwo srv">
+          <img src="Assets/img_portfolio/work2.jpg" alt="hair cut" class="img_fluid">
+          <h5 class="t_center x2">Men's haircut</h5>
+          <p>
+            <strong>Traditional men's haircut with clippers and scissors.</strong><br>
+            Includes shampoo and styling.
+          </p>
+          <p>(Children from 5 years old. Kids aged 1–3 years – €25)</p>
+          <p style="margin-bottom: 1em;">Duration: 30 minutes</p>
+        </div> 
+        <div class="serviceThree srv">
+          <img src="Assets/img_portfolio/work3.jpg" alt="hair cut" class="img_fluid">
+          <h5 class="t_center x2">styling/blow dry</h5>
+           <p>
+            <strong>Women's haircut with blow-dry</strong><br>
+            Choose the haircut you like – we’ll make it happen after a personalized consultation.
+          </p>
+          <p>The service includes a double shampoo, conditioner for all hair types, and blow-dry with styling.</p>
+          <p style="margin-bottom: 1em;">Duration: 30 minutes</p>
+        </div> 
+      </div>
+      <div class="album">
+        <h3 style="padding: 2em 0;" class="uppercase">Album</h3>
+        <div class="container_works">
+          <figure class="haircut_gallery" data-fancybox="galleryServ" href="Assets/img_portfolio/haircut_one_pic.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_one_pic.jpg" alt="haircut one" />
+          </figure> 
+          <figure class="haircut_gallery" data-fancybox="galleryServ" href="Assets/img_portfolio/haircut_two.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_two.jpg" alt="haircut two" />
+          </figure> 
+          <figure class="haircut_gallery" data-fancybox="galleryServ" href="Assets/img_portfolio/haircut_three.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_three.jpg" alt="haircut three" />
+          </figure> 
+          <figure class="haircut_gallery" data-fancybox="galleryServ" href="Assets/img_portfolio/haircut_four.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_four.jpg" alt="haircut four" />
+          </figure> 
+          <figure class="haircut_gallery" data-fancybox="galleryServ" href="Assets/img_portfolio/haircut_five.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_five.jpg" alt="haircut five" />
+          </figure> 
+          <figure class="haircut_gallery" data-fancybox="galleryServ" href="Assets/img_portfolio/haircut_six.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_six.jpg" alt="haircut six" />
+          </figure> 
+        </div>
+      </div>
+    </main>
+    <!-- <figure class="haircut_one">
+            <a data-fancybox="gallery" href="Assets/img_portfolio/haircut_one_pic.jpg">
+              <img class="img_fluid adapt" src="Assets/img_portfolio/haircut_one_pic.jpg" alt="haircut one" />
+            </a>
+          </figure> -->
+    <!--FOOTER......-->
+    <footer class=" footer_services_page alternative_footer flex_center ">
+      <div class="contact_footer_logo flex_center">
+            <a href="/" style="margin-top: -15%;"><img class="img_fluid" src="Assets/logo/Artboard 19.png" alt="logo hair_day"></a>
+      </div>
+      <div class="locations_footer_contact uppercase">
+        <div class="contact_footer_element">
+          <span>Wallaby BC</span>
+          <br>
+          <span>742 Wallaby St #12
+            <br>Wallaby, BC V1W 3A4</span>
+        </div>
+        <div class="contact_footer_element">
+            <span>Lunenburg Kelowna</span>
+            <br>
+            <span>295 Orchard Valley Dr #204
+              <br>Kelowna, BC V1Y 6P6</span>
+        </div>
+        <div class="contact_footer_element">
+            <span>Tofino Kelowna</span>
+            <br>
+            <span>67 Driftwood Lane
+            <br/> Tofino, BC V0R 2Z0</span>
+        </div>
+      </div>
+    </footer>
+  </section>
    <!-- JS -->
   <script  src="script.js"></script>
   <!--JS library for pic views(FANCYBOX)-->
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
   <!--DOMPurify-->
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
-
+  <!--api maps google-->
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn9Re2rc3hutbDBMKT6bFYsbhXepWqQqY&callback=initMap" 
+  async
+  defer
+  onload="allMapsInit()"
+  ></script>
 </body>
 </html>
+<!--TO DO FINIRE PAG HOME-->
+<!--TO DO FINIRE PAG SERVIZI-->
+<!--TO DO LOGICA NUMERI DI TELEFONO-->
+<!--TO DO LOGICA EMAIL-->

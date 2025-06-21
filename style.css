@@ -21,6 +21,9 @@ body{background-color: rgba(26, 26, 26, 0.401);}
         "footer";
 }
 /*tool class*/
+.relative{
+    position: relative;
+}
 .block{
     display: block;
 }
@@ -321,7 +324,7 @@ footer {
 }
 
 /****************************************************/
-/***********SPINNER*+******************************************************************************************************************/
+/***********SPINNER*+********************************/
 /****************************************************/
 .spinner {
   margin: 100px auto 0;
@@ -379,17 +382,45 @@ footer {
     min-height: 150vh;
     min-width: 100vw;
     z-index: 100;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr 0.1fr;
+    grid-template-areas: "header_contact_page"
+                         "main_contact_page"
+                         "footer_contact_page";
 }
 /*..........HEADER..............................*/
-.header_contact_page{
+.alternative_header{
+    position: fixed;
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     grid-template-areas: "logo nav";
     background-color: black;
     padding: 2rem 0;
 }
-.header_contact_page a{
+.header_contact_page{
+    grid-area: header_contact_page;
+}
+@keyframes navRezize{
+    0%{
+        padding: 2rem;
+    }
+    50%{
+        padding: 1rem;
+
+    }
+    100%{
+        padding: 0;
+    }
+}
+.logo_contact_header{
     grid-area: logo;
+}
+.resized{
+animation: navRezize linear 0.5s forwards;
+}
+.resized > *{
+  scale: 0.6;
 }
 .contact_nav{
     grid-area: nav;
@@ -401,6 +432,7 @@ footer {
 }
 /*..........MAIN..............................*/
 .main_contact_page{
+    grid-area: main_contact_page;
     background-color: white;
     color: black;
     display: grid;
@@ -412,7 +444,7 @@ footer {
 }
 .form_container{
     grid-area: form;
-    margin: 5% auto;
+    margin: 10% auto 0 auto;
     width:min-content;
      text-align: justify;
 }
@@ -430,9 +462,45 @@ footer {
 }
 .maps_container{
      grid-area: maps;
+     display: grid;
+     width: 90%;
+     height: 70%;
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-areas: "map_one map_two map_three";
+     gap: 1em;
+     margin: -5% auto;
 }
+#container_map_one{
+    grid-area: map_one; 
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+}
+#container_map_two{
+    grid-area: map_two; 
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+}
+#container_map_three{
+    grid-area: map_three; 
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+}
+#map_one{height: 65%;}
+#map_two{height: 65%;}
+#map_three{height: 65%;}
 .header_separator{
      grid-area: header_separator;
+     height: 35%;
+     width: 100%;
+     background-color: rgba(0, 0, 0, 0.8);
+     color: white;
+     margin: 1em 0;
 }
 .contact_form{
     text-align: left;
@@ -513,10 +581,33 @@ footer {
 .button_field{ grid-area: button_field;}
 
 /*..........FOOTER..............................*/
+.alternative_footer{
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "contact_footer_logo locations_footer_contact";
+    color: white;
+}
+.alternative_footer div a{
+   max-height: 100%;
+}
+.contact_footer_logo{
+    grid-area: contact_footer_logo;
+}
 .footer_contact_page{
-     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: "contact_footer_logo locations"
+    grid-area: footer_contact_page;
+
+}
+.locations_footer_contact{
+    grid-area: locations_footer_contact;
+    display: flex;
+    justify-content: space-between;
+}
+.contact_footer_element{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: -5% 3% 0 3% ;
 }
 /****************************************************/
 /***********MODAL PAGE*+******************************************************************************************************************/
@@ -631,7 +722,6 @@ footer {
 .continue_btn:hover{
     animation: book_animation 0.4s ease-out forwards;
     color: black;
-    an
 }
 
 .date_field{
@@ -974,6 +1064,322 @@ footer {
     flex-direction: column;
     flex-wrap: wrap;
 }
+.contact_page.none{
+    display: none;
+}
+.modal_page.none{
+    display: none;
+}
+.about_page.none{
+    display: none;
+}
+.services_page.none{
+    display: none;
+}
+/*////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////ABOUT PAGE//////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+.about_page {
+  min-width: 100vw;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header_about_page"
+    "main_about_page"
+    "footer_about_page";
+}
+.footer_about_page{
+    grid-area: footer_about_page;
+}
+.about_page ul {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2em;
+}
 
+.header_about_page {
+  grid-area: header_about_page;
+  position: inherit;
+  z-index: 10;
+}
 
+.main_about_page {
+  grid-area: main_about_page;
+  display: grid;
+  grid-template-rows: 1fr 1fr 0.4fr;
+  grid-template-areas:
+    "hero_pic"
+    "presentation"
+    "book_app";
+}
+.book_app{
+  grid-area: book_app;
+  background-image: url("./Assets/background/background3.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.book_app div{
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+  justify-content: center
+}
+
+.hero_pic {
+  grid-area: hero_pic;
+  min-height: 100%;
+  width: 100vw;
+  background-image: url("./Assets/hairstylers/staff_original_copy.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 80% 20%;
+  background-color:#333; 
+  color: white;
+}
+
+.presentation {
+  background-image: url("./Assets/background/sfondo.png");
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 1) !important;
+  grid-area: presentation;
+  padding: 2rem;
+  color: black;
+  text-align: justify;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "presentation_text"
+                        "presentation_blocks";
+}
+.presentation_text{
+  margin: 0 auto;
+  grid-area: presentation_text;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+  font-size: 1.2em;
+}
+.presentation_text h3{
+    padding-bottom: 3%;
+    font-size: 1.5em;
+}
+.presentation_blocks{
+    grid-area: presentation_blocks;
+    display: flex;
+    justify-content: space-around;
+}
+.presentation_block{
+    padding: 2%;
+    width: 25%;
+    height: 65%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* x, y, blur, colore */
+    
+}
+.btn_book_about{
+    background-color: #252620;
+    color: #F7F7F7;
+    border-color: #F7F7F7;
+    border-radius: 100%;
+    padding: 0.2em 0.4em;
+    font-size: 5em;
+}
+.book_app div span{
+    margin-top: 1em;
+    text-align: center;
+}
+.book_app div span strong{
+    font-size: 1.5em;
+    color: rgb(208, 96, 76);
+    font-weight: 800;
+}
+.book_app div span strong:hover{
+    cursor: pointer;
+    font-size: 2.01em;    
+}
+.btn_book_about:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+@keyframes celColor{
+    0%{
+        color:#D0604B
+    }
+    50%{
+        color: white;
+
+    }
+    100%{
+        color:#D0604B;
+    }
+}
+.cell_number_about{
+    animation: celColor 3s linear infinite, pulse 1s infinite;
+}
+.cell_number_about:hover{
+    cursor: pointer;
+}
+
+.footer_about_page {
+  grid-area: footer_about_page;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*///////////////////SERVICES PAGE//////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+.services_page{
+    min-height: 200vh;
+    min-width: 100vw;
+    z-index: 100;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header_services_page"
+                         "main_services_page"
+                         "footer_services_page";
+}
+.services_page ul{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2em;
+}
+.header_services_page{
+    grid-area: header_services_page;
+    position: inherit;
+}
+.main_services_page{
+    grid-area: main_services_page;
+    display: grid;
+    width: 100vw;
+    grid-template-rows: 1fr 2fr  1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "reviewBlockOne reviewBlockTwo reviewBlockThree"
+                         "servicesBlock servicesBlock servicesBlock"
+                         "album album album"
+                         ;
+}
+
+.servicesBlock{
+ background-image: url("/Assets/background/background3.jpg");
+ background-attachment: fixed;
+ background-repeat: no-repeat;
+ background-size: cover;
+ padding-bottom: 4%;
+ grid-area: servicesBlock;
+ display: grid;
+ place-items: center;
+ grid-template-columns: 1fr 1fr 1fr;
+ grid-template-rows: auto 1fr;
+ grid-template-areas: "servicesBlockTitle servicesBlockTitle servicesBlockTitle"
+                       "serviceOne serviceTwo serviceThree";
+}
+.serviceOne{
+    grid-area: serviceOne; 
+}
+.serviceTwo{
+    grid-area: serviceTwo;  
+}
+.serviceThree{
+    grid-area: serviceThree;  
+}
+.servicesBlockTitle{
+    grid-area: servicesBlockTitle;
+    text-align: center;
+    padding: 5% 0;
+}
+.footer_services_page{
+ grid-area: footer_services_page;
+}
+.orange{
+    color: #D0604B;
+}
+.rwbl{
+    background-image: url("/Assets/background/sfondo.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid black;
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+    margin: 1em;
+}
+
+.reviewBlockOne{   
+ grid-area: reviewBlockOne;   
+}
+.reviewBlockTwo{
+ grid-area: reviewBlockTwo;   
+}
+.reviewBlockThree{
+ grid-area: reviewBlockThree;   
+}
+
+.srv{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1em;
+    box-shadow: 0 4px 15px rgba(208, 96, 75, 0.9);
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    background-color: #EEF2F2;
+    color: black;
+}
+.srv > :not(img){
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+.album {
+  padding: 6em 0;
+  width: auto;              /* lascia che sia fluido */
+  background: url("Assets/background/sfondo.png") no-repeat center/cover;
+  grid-area: album;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #252620;
+}
+
+.container_works {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;                 /* spazio tra le immagini */
+  width: 90%;               /* o quanto ti serve */
+  max-width: 1200px;        /* per non sforare troppo il layout */
+  margin: 0 auto;
+}
+
+.haircut_gallery {
+  flex: 0 1 calc((100% - 5em) / 6); /* 6 elementi tenendo conto dei gap */
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.haircut_gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
